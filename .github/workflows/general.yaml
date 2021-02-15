@@ -10,24 +10,24 @@ jobs:
       ######
       ######
       # SSH 設定
-      - name: general
+      - name: general0
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_GENERAL0_PRIVATE_KEY }}
           name: general.key
           known_hosts: ${{ secrets.SSH_GENERAL0_KNOWN_HOSTS }}
           config: |
-            Host general
+            Host general0
               HostName ${{ secrets.SSH_GENERAL0_HOST_NAME }}
               User ${{ secrets.SSH_GENERAL0_USER }}
-              IdentityFile ~/.ssh/general.key
+              IdentityFile ~/.ssh/general0.key
               Port 10022
               StrictHostKeyChecking no
       ######
       ######
       - name: Connect server to staging, Other ( pull, build etc... )
         run: |
-          ssh general \
+          ssh general0 \
           "\
             pwd
           "
