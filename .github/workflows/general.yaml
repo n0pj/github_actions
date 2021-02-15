@@ -1,0 +1,34 @@
+name: staging
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      ######
+      ######
+      # SSH 設定
+      - name: general
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_GENERAL_PRIVATE_KEY }}
+          name: general.key
+          known_hosts: ${{ secrets.SSH_GENERAL_KNOWN_HOSTS }}
+          config: |
+            Host general
+              HostName sv3151.xserver.jp
+              User flares
+              IdentityFile ~/.ssh/general.key
+              Port 10022
+              StrictHostKeyChecking no
+      ######
+      ######
+      - name: Connect server to staging, Other ( pull, build etc... )
+        run: |
+          ssh general \
+          "\
+            pwd
+          "
+
