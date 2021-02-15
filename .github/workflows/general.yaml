@@ -13,13 +13,13 @@ jobs:
       - name: general
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{ secrets.SSH_GENERAL_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_GENERAL0_PRIVATE_KEY }}
           name: general.key
-          known_hosts: ${{ secrets.SSH_GENERAL_KNOWN_HOSTS }}
+          known_hosts: ${{ secrets.SSH_GENERAL0_KNOWN_HOSTS }}
           config: |
             Host general
-              HostName sv3151.xserver.jp
-              User flares
+              HostName ${{ secrets.SSH_GENERAL0_HOST_NAME }}
+              User ${{ secrets.SSH_GENERAL0_USER }}
               IdentityFile ~/.ssh/general.key
               Port 10022
               StrictHostKeyChecking no
@@ -31,4 +31,3 @@ jobs:
           "\
             pwd
           "
-
