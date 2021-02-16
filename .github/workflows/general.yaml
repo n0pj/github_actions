@@ -29,5 +29,12 @@ jobs:
         run: |
           ssh general0 \
           "\
-            pwd
+            pwd && \
+            ls && \
+            cd ~/ && \
+            git reset --hard HEAD && \
+            git checkout staging && \
+            git pull && \
+            yarn && \
+            yarn build
           "
