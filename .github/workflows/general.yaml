@@ -10,6 +10,9 @@ jobs:
       ######
       ######
       # SSH 設定
+      # https://github.com/girishpn/ssh-key-action-1
+      # ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
+      # で OPENSSH 形式に変換する必要あり
       - name: general0
         uses: shimataro/ssh-key-action@v2
         with:
